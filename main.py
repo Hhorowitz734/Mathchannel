@@ -330,7 +330,51 @@ class MaxValues(Scene):
             FadeOut(line1),
             FadeOut(line2))
 
+        self.play(
+            Flash(plane.c2p(10, 0))
+        )
+
         self.wait(2)
+
+        approach3 = Text("Modulo Arithmetic", font_size = 30).move_to(approach)
+        new_math_expression = MathTex(r"\text{max} + 1 = 0").next_to(approach, DOWN)
+        n_out_of_bounds_text_2 = Text("it is computed modulo the max.", font_size=24).next_to(out_of_bounds_text, DOWN)
+
+
+
+
+        self.play(Transform(a10_f, approach3))
+        self.play(
+            FadeIn(line1),
+            FadeIn(line2),
+            FadeOut(full_red_line),
+            Transform(math_expression, new_math_expression),
+            Transform(out_of_bounds_text_2, n_out_of_bounds_text_2)
+        )
+
+        short_green_line = Line(plane.c2p(10, 0), plane.c2p(11, 0), color=YELLOW)
+
+        self.play(
+
+            FadeOut(line2_red),
+            FadeOut(line1),
+            FadeOut(line2),
+            FadeIn(short_green_line)
+            
+        )
+
+        self.play(
+            ApplyMethod(short_green_line.move_to, plane.c2p(0.5, 0))
+        )
+
+        self.play(
+            Flash(plane.c2p(1, 0))
+        )
+
+        self.wait(4)
+
+
+
 
 
 
